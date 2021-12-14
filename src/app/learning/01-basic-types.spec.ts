@@ -259,6 +259,57 @@ The End`;
           jobs: ['guitar god']
         }
       });
+      it('structural typing', () => {
+
+        interface LoggableCall { message: string, from: string }
+
+        function doSomethingRad(thing: LoggableCall) {
+          console.log(`At ${new Date()} you got the following message ${thing.message} from ${thing.from}`);
+        }
+
+        //Structual Typing makes TypeScript really flexible! Don't worry about matching the EXACT parameters like in some languages. Instead, just make sure you have what you need.
+
+        function doSomethingRadWithAnonInterface(thing: { message: string, from: string }, numberOfTimes: number) {
+          console.log(`At ${new Date()} you got the following message ${thing.message} from ${thing.from}`);
+        }
+
+        const call = { from: 'Bill', message: 'Your tacos are ready for pickup', needsCallback: false }
+        doSomethingRad(call);
+      });
+    });
+
+    describe('function literals', () => {
+      it('do this later');
+      it('needs to throw on web expection', () => {
+
+      });
+      it('named functions', () => {
+        // Hoists functions to the top. It always reads functions first no matter location. Below we have expect above the function that it uses.
+        expect(add(2, 2)).toBe(4);
+
+        function add(a: number, b: number): number {
+          return a + b;
+        }
+      });
+      // Remember, an expression is a statement that produces a value of some sort
+      it('anonymous functions', () => {
+        const subtract = (a: number, b: number): number => a - b;
+
+
+
+        const divide = (a: number, b: number): number => {
+          if (b === 0) {
+            throw 'Are you Crazy!';
+          } else {
+            return a / b;
+          }
+        };
+        expect(subtract(10, 2)).toBe(8);
+        expect(divide(10, 2)).toBe(5);
+        expect(() => divide(10, 0)).toThrow('Are you Crazy!');
+
+      });
+
 
     });
   });
