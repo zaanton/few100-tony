@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { GiftListItemCreate, GiftListItemModel } from 'src/app/models';
+import { GiftDataService } from 'src/gift-data.service';
 
 @Component({
   selector: 'app-gift-giving',
   templateUrl: './gift-giving.component.html',
   styleUrls: ['./gift-giving.component.css']
 })
-export class GiftGivingComponent implements OnInit {
+export class GiftGivingComponent {
+  data$ = this.service.getData();
 
-  constructor() { }
+  constructor(private service: GiftDataService) { }
 
-  ngOnInit(): void {
+  addGiftItem(item: GiftListItemCreate) {
+    this.service.addData(item);
   }
+
 
 }
