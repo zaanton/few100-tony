@@ -11,3 +11,8 @@ export interface GiftListItemCreate {
   for: string;
   due: string;
 }
+
+export interface DashGiftSummaryModel {
+  numberToPurchase: number;
+  items: string[];
+}
